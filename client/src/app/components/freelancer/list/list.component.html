@@ -1,0 +1,177 @@
+<form>
+  <div class="form-group form-inline">
+    Full text search:
+    <input class="form-control ml-2" type="text" [formControl]="filter" />
+  </div>
+</form>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+  Add Freelancer
+</button>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone number</th>
+      <th scope="col">Address</th>
+      <th scope="col">Website</th>
+      <th scope="col">Details</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let freelancer of freelancers$ | async; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+
+      <td>
+        <ngb-highlight
+          [result]="freelancer.firstName"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="freelancer.lastName"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="freelancer.email"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="freelancer.phoneNumber"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+
+      <td>
+        <ngb-highlight
+          [result]="freelancer.address"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="freelancer.website"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <button class="btn-primary" (click)="details(freelancer.id)">
+          Detail
+        </button>
+      </td>
+      <td><button class="btn-secondary">Add Project</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="firstName"
+            class="form-control"
+            placeholder="firstName"
+            name="firstName"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="LastName"
+            class="form-control"
+            placeholder="LastName"
+            name="lastName"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="email"
+            class="form-control"
+            placeholder="email"
+            name="email"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="phoneNumber"
+            class="form-control"
+            placeholder="phoneNumber"
+            name="phoneNumber"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="address"
+            class="form-control"
+            placeholder="address"
+            name="address"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="website"
+            class="form-control"
+            placeholder="website"
+            name="website"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>
+
+

@@ -4,14 +4,20 @@ module.exports.create = [
   check('firstName')
     .not()
     .isEmpty()
-    .withMessage('firstname should nor be empty')
     .trim()
     .escape()
-    .withMessage('firstname is reauired'),
-  check('lastName').not().isEmpty().trim().escape(),
+    .withMessage('firstname is required'),
+  check('lastName')
+    .not()
+    .isEmpty()
+    .trim()
+    .escape()
+    .withMessage('lastName is required'),
   check('email')
     .isEmail()
     .normalizeEmail()
-    .withMessage('should be q emqil reauired'),
-  check('phoneNumber').isMobilePhone(),
+    .withMessage('Email is required and formatted'),
+  check('phoneNumber')
+    .isMobilePhone()
+    .withMessage('Phone number is required and formatted'),
 ];

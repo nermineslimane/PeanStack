@@ -6,10 +6,10 @@ const db = require('./models');
 const app = express();
 
 var corsOptions = {
-  origin: 'http://localhost:8081',
+  origin: 'http://localhost:4200',
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 // drop existing tables and re-sync database
 db.sequelize.sync().then(() => {
   console.log('Drop and re-sync db.');

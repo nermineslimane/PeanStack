@@ -85,6 +85,7 @@ exports.findById = (req, res) => {
           'startDate',
           'endDate',
           'duration',
+          'type',
         ],
         through: {
           attributes: [],

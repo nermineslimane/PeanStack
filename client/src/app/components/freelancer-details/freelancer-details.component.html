@@ -1,0 +1,177 @@
+<div class="card mb-4" *ngIf="isLoading">
+  <div class="card-body">
+    <table class="table user-view-table m-0">
+      <tbody>
+        <tr>
+          <td>First Name:</td>
+          <td>{{ freelancer.firstName }}</td>
+        </tr>
+        <tr>
+          <td>last name:</td>
+          <td>{{ freelancer.lastName }}</td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>{{ freelancer.email }}</td>
+        </tr>
+        <tr>
+          <td>Phone Namber:</td>
+          <td>{{ freelancer.phoneNumber }}</td>
+        </tr>
+        <tr>
+          <td>Phone Namber:</td>
+          <td>{{ freelancer.webSite }}</td>
+        </tr>
+        <tr>
+          <td>Websie:</td>
+          <td>{{ freelancer.firstName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr class="border-light m-0" />
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+    Add Project
+  </button>
+  <div class="table-responsive">
+    <table class="table card-table m-0">
+      <tbody>
+        <tr>
+          <th>Project Title</th>
+          <th>description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Duration</th>
+          <th>Type</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let p of freelancer.project">
+          <td>{{ p.title }}</td>
+          <td>{{ p.description }}</td>
+          <td>{{ p.startDate | date: "short" }}</td>
+          <td>{{ p.endDate | date: "short" }}</td>
+          <td>{{ p.duration }}</td>
+          <td>{{ p.type }}</td>
+          <td>{{ p.type }}</td>
+          <td>
+            <button class="btn-danger" (click)="deleteProject(p)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="Title"
+            class="form-control"
+            placeholder="Title"
+            name="title"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="description"
+            class="form-control"
+            placeholder="description"
+            name="description"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+      <div class="input-group">
+        <input
+          id="startDate"
+          class="form-control"
+          placeholder="yyyy-mm-dd"
+          name="startDate"
+          ngbDatepicker
+          #startDate="ngbDatepicker"
+          (change)="modelChangeFn($event)"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary calendar"
+            (click)="startDate.toggle()"
+            type="button"
+          ></button>
+        </div>
+      </div>
+      <div class="input-group">
+        <input
+          id="endDate"
+          class="form-control"
+          placeholder="yyyy-mm-dd"
+          name="endDate"
+          ngbDatepicker
+          #endDate="ngbDatepicker"
+          (change)="modelChangeFn($event)"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary calendar"
+            (click)="endDate.toggle()"
+            type="button"
+          ></button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="duration"
+            class="form-control"
+            placeholder="duration"
+            name="duration"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="type"
+            class="form-control"
+            placeholder="type"
+            name="type"
+            (change)="modelChangeFn($event)"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>
