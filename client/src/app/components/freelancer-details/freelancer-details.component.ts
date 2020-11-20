@@ -1,6 +1,6 @@
-import { ProjectService } from './../../services/project.service';
+import { ProjectService } from '../../services/project.service';
 import { Observable } from 'rxjs';
-import { FreelancerService } from './../../services/freelancer.service';
+import { FreelancerService } from '../../services/freelancer.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';

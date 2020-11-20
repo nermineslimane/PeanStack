@@ -31,8 +31,7 @@ export class ListComponent implements OnInit {
   constructor(
     private freelancerService: FreelancerService,
     private router: Router,
-    private modalService: NgbModal,
-
+    private modalService: NgbModal
   ) {
     console.log(123);
   }
@@ -56,8 +55,6 @@ export class ListComponent implements OnInit {
         }
       );
   }
-
-  
 
   modelChangeFn(event: any) {
     // without type info
@@ -91,7 +88,6 @@ export class ListComponent implements OnInit {
     console.log(id);
     this.router.navigate(['details', { id }]);
   }
-  
 
   retrieveFreelancer(): void {
     this.freelancerService.getAll().subscribe(
