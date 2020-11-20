@@ -1,15 +1,19 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const db = require('./models');
 
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: 'http://localhost:8081',
 };
 
 app.use(cors(corsOptions));
-
+// drop existing tables and re-sync database
+db.sequelize.sync().then(() => {
+  console.log('Drop and re-sync db.');
+});
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
@@ -17,9 +21,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to PeanStack app." });
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to PeanStack app.' });
 });
+
+// routes
+require('./routes/freelancer.routes')(app);
+require('./routes/project.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
