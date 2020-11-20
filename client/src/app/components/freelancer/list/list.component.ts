@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
   filter = new FormControl('');
   freelancers: any[];
   closeResult = '';
-
+  projects: any[];
   formm: any = {
     firstName: '',
     lastName: '',
@@ -30,6 +30,8 @@ export class ListComponent implements OnInit {
 
   constructor(
     private freelancerService: FreelancerService,
+    private projectService: ProjectService,
+
     private router: Router,
     private modalService: NgbModal
   ) {
@@ -39,6 +41,7 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     console.log(123);
     this.retrieveFreelancer();
+    this.retrieveProject();
   }
 
   open(content) {
@@ -83,7 +86,7 @@ export class ListComponent implements OnInit {
       );
     });
   }
-
+  //details Freelancer
   details(id) {
     console.log(id);
     this.router.navigate(['details', { id }]);
@@ -104,5 +107,22 @@ export class ListComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  retrieveProject(): void {
+    this.projectService.getAll().subscribe(
+      (data) => {
+        console.log(data);
+        this.projects = data;
+        console.log(this.projects);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  detailsProject(id) {
+    console.log(id);
+    this.router.navigate(['detailsProject', { id }]);
   }
 }

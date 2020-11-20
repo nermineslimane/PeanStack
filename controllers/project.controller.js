@@ -81,15 +81,20 @@ exports.delete = (req, res) => {
     });
 };
 
-// Visualize details of project
-
-exports.findById = (id) => {
+exports.findById = (req, res) => {
+  const id = req.params.id;
   Project.findByPk(id, {
     include: [
       {
         model: Freelancer,
         as: 'freelancer',
-        attributes: ['firstName', 'lastName'],
+        attributes: [
+          'firstName',
+          'lastName',
+          'phoneNumber',
+          'address',
+          'website',
+        ],
         through: {
           attributes: [],
         },
@@ -100,6 +105,6 @@ exports.findById = (id) => {
       return res.json(project);
     })
     .catch((err) => {
-      console.log('>> Error while finding Freelancers: ', err);
+      console.log('>> Error while finding Project: ', err);
     });
 };

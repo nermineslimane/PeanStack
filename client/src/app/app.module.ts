@@ -9,9 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FreelancerDetailsComponent } from './components/freelancer-details/freelancer-details.component';
 import { CommonModule } from '@angular/common';
+import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, FreelancerDetailsComponent],
+  declarations: [
+    AppComponent,
+    ListComponent,
+    FreelancerDetailsComponent,
+    ProjectDetailsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

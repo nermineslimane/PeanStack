@@ -1,0 +1,22 @@
+<p *ngIf="isLoading">
+  Freelancers working on project {{ project.title }} are :
+</p>
+
+<table class="table card-table m-0" *ngIf="isLoading">
+  <tbody>
+    <tr>
+      <th>Freelancer's Name</th>
+      <th>Freelancer's Last Name</th>
+      <th>Freelancer's Phone Number</th>
+      <th>Freelancer's Address</th>
+      <th>Freelancer's website</th>
+    </tr>
+    <tr *ngFor="let f of project.freelancer">
+      <td>{{ f.firstName }}</td>
+      <td>{{ f.lastName }}</td>
+      <td>{{ f.phoneNumber }}</td>
+      <td>{{ f.address }}</td>
+      <td>{{ f.website }}</td>
+    </tr>
+  </tbody>
+</table>
